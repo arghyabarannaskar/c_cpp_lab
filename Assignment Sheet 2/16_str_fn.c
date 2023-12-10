@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<ctype.h>
+#include<stdlib.h>
 
 void fun_strlen();
 void fun_strcpy();
@@ -28,6 +29,18 @@ int main(){
         case 1:
             fun_strlen();
             break;
+        case 2:
+            fun_strcpy();
+            break;
+        case 3:
+            fun_strcat();
+            break;
+        case 4:
+            fun_strrev();
+            break;
+        case 5:
+            fun_strcmp();
+            break;
         
         default:
             break;
@@ -45,6 +58,48 @@ void fun_strlen(){
     gets(st);
     int len = Strlen(st);
     printf("\nThe length of the string is: %d", len);
+}
+
+void fun_strcpy(){
+    char st[80];
+    puts("\nEnter your string: ");
+    gets(st);
+    char str[80];
+    Strcpy(str, st);
+    printf("\nAfter copying st int str, str is %s", str);
+}
+
+void fun_strcat(){
+    char target[] = "Sayonara";
+    char source[] = " Arghya";
+    printf("\nThe first string is %s and the second string is %s", target, source);
+    Strcat(target, source);
+    printf("\nAfter concatenating first string is %s", target);
+}
+
+void fun_strrev(){
+    char str[80];
+    puts("\nEnter your string: ");
+    gets(str);
+    printf("\nOriginal string = %s", str);
+    char *s = Strrev(str);
+    printf("\nAfter reversing = %s", s);
+}
+
+void fun_strcmp(){
+    char st[80];
+    char str[80];
+    puts("\nEnter the first string: ");
+    gets(st);
+    puts("\nEnter the second string: ");
+    gets(str);
+    int cmp = Strcmp(st, str);
+    if(cmp == 0)
+        printf("\nThe strings are equal");
+    else if(cmp < 0)
+        printf("\nFirst string is lexographically smaller.");
+    else
+        printf("\nSecond string is lexographically smaller.");
 }
 
 int Strlen(char *s){
@@ -82,9 +137,15 @@ char * Strrev(char *original){
 }
 
 int Strcmp(char *s1, char *s2){
-    while(*s1 && *s2 && (*s1++ == *s2++))
-        ;
-    if(*s1 == '\0' && *s2 == '\0')
+    int flag = 1;
+    while(*s1 && *s2){
+        if(*s1++ != *s2++){
+            flag = 0;
+            break;
+        }
+    }
+
+    if(*s1 == '\0' && *s2 == '\0' && flag)
         return 0;
     s1--;
     s2--;
