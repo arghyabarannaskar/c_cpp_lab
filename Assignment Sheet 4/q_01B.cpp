@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-class CircleWithoutMethods
+class Circle
 {
-protected:
+private:
     float radius;
-};
-class Circle : protected CircleWithoutMethods
-{
+
 public:
     void calculateArea(float r)
     {
