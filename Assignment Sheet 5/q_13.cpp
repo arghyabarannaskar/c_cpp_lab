@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#define PI 3.1415
 
 using namespace std;
 
@@ -36,7 +37,7 @@ public:
     }
 
     double area() const override {
-        return M_PI * radius * radius;
+        return PI * radius * radius;
     }
 
     ~Circle() override {
